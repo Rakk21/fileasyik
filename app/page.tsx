@@ -12,6 +12,7 @@ import {
   Stars,
   Gift,
   ChevronRight,
+  RotateCcw,
 } from "lucide-react";
 
 const memories = [
@@ -66,6 +67,7 @@ export default function Home() {
   const [chapter, setChapter] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [typewriterText, setTypewriterText] = useState("");
+  const [hasOpenedStory, setHasOpenedStory] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   
   const fullText = "AAku mau cerita sedikit...\nTentang kamu, tentang kita, dan alasan kenapa aku bersyukur punya kamu.";
@@ -94,7 +96,7 @@ export default function Home() {
       return;
     }
 
-    if (chapter >= 1) {
+    if (hasOpenedStory) {
       if (audio.paused) {
         audio.play().catch(() => undefined);
       }
@@ -102,9 +104,10 @@ export default function Home() {
       audio.pause();
       audio.currentTime = 0;
     }
-  }, [chapter]);
+  }, [chapter, hasOpenedStory]);
 
   const handleOpenHeart = () => {
+    setHasOpenedStory(true);
     setIsTransitioning(true);
     setTimeout(() => {
       setChapter(1);
@@ -115,6 +118,11 @@ export default function Home() {
   const nextChapter = () => {
     setChapter((prev) => prev + 1);
     window.scrollTo(0, 0); // Pastikan scroll kembali ke atas tiap ganti chapter
+  };
+
+  const previousChapter = () => {
+    setChapter((prev) => Math.max(0, prev - 1));
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -207,7 +215,7 @@ export default function Home() {
               </h2>
               <p className="mt-8 text-gray-500 text-lg md:text-xl max-w-lg mx-auto">Dan ini adalah sedikit cerita tentang kita, dari sudut pandang aku.</p>
               
-              <NextButton text="Lanjut baca" onClick={nextChapter} />
+              <NextButton text="Lanjut baca" onClick={nextChapter} onBack={previousChapter} />
             </div>
           </motion.section>
         )}
@@ -238,7 +246,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="mt-16 text-center">
-                <NextButton onClick={nextChapter} />
+                <NextButton onClick={nextChapter} onBack={previousChapter} />
               </div>
             </div>
           </motion.section>
@@ -267,7 +275,7 @@ export default function Home() {
               <p className="mt-12 text-3xl md:text-4xl font-serif text-white drop-shadow-lg font-bold mb-16">
                 rasanya semua penantian itu terbayar. ❤️
               </p>
-              <NextButton onClick={nextChapter} theme="dark" />
+              <NextButton onClick={nextChapter} onBack={previousChapter} theme="dark" />
             </div>
           </motion.section>
         )}
@@ -304,7 +312,7 @@ export default function Home() {
                 ))}
               </div>
               <div className="text-center">
-                <NextButton onClick={nextChapter} />
+                <NextButton onClick={nextChapter} onBack={previousChapter} />
               </div>
             </div>
           </motion.section>
@@ -330,7 +338,7 @@ export default function Home() {
               <div className="mt-14 mb-16 inline-block px-10 py-5 bg-gradient-to-r from-pink-50 to-rose-50 rounded-2xl border border-pink-100">
                 <p className="font-serif text-3xl text-pink-600 italic font-medium">Yang penting, kita tetap memilih satu sama lain.</p>
               </div>
-              <NextButton onClick={nextChapter} />
+              <NextButton onClick={nextChapter} onBack={previousChapter} />
             </div>
           </motion.section>
         )}
@@ -366,7 +374,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="mt-16 text-center">
-                <NextButton text="Satu hal terakhir" onClick={nextChapter} />
+                <NextButton text="Satu hal terakhir" onClick={nextChapter} onBack={previousChapter} />
               </div>
             </div>
           </motion.section>
@@ -404,6 +412,7 @@ export default function Home() {
                   Tentu ❤️
                 </motion.button>
               </div>
+              <PreviousButton onClick={previousChapter} />
             </div>
           </motion.section>
         )}
@@ -426,12 +435,18 @@ export default function Home() {
                 11 June → ∞
               </div>
               <p className="mt-10 text-gray-500 font-medium text-lg">Cerita kita belum selesai.</p>
-              <button 
-                onClick={() => setChapter(0)} // Mengulang cerita jika diinginkan
-                className="mt-12 text-sm text-pink-300 hover:text-pink-500 underline underline-offset-4"
-              >
-                Baca Ulang Cerita
-              </button>
+              <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+                <PreviousButton onClick={previousChapter} className="mt-0" />
+                <motion.button
+                  whileHover={{ scale: 1.05, y: -3 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setChapter(0)}
+                  className="inline-flex items-center gap-3 rounded-full border-2 border-pink-200 bg-white px-8 py-4 text-lg font-bold text-pink-600 shadow-xl transition-all hover:bg-pink-50"
+                >
+                  <RotateCcw size={20} />
+                  Baca ulang cerita
+                </motion.button>
+              </div>
             </div>
           </motion.section>
         )}
@@ -443,21 +458,43 @@ export default function Home() {
 
 // ---- HELPER COMPONENTS ---- //
 
-function NextButton({ onClick, text = "Next Chapter", theme = "light" }: any) {
+function NextButton({ onClick, onBack, text = "Lanjut chapter", theme = "light" }: any) {
+  const isDark = theme === "dark";
+  return (
+    <div className="flex flex-wrap justify-center gap-4">
+      {onBack && <PreviousButton onClick={onBack} theme={theme} />}
+      <motion.button
+        whileHover={{ scale: 1.05, x: 5 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={onClick}
+        className={`mt-10 px-8 py-4 rounded-full font-bold text-lg shadow-xl inline-flex items-center gap-3 transition-all ${
+          isDark
+            ? "bg-white text-pink-600 hover:shadow-white/20"
+            : "bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:shadow-pink-300/50"
+        }`}
+      >
+        {text}
+        <ChevronRight size={22} className="relative top-[1px]" />
+      </motion.button>
+    </div>
+  );
+}
+
+function PreviousButton({ onClick, theme = "light", className = "mt-10" }: { onClick: () => void; theme?: string; className?: string }) {
   const isDark = theme === "dark";
   return (
     <motion.button
-      whileHover={{ scale: 1.05, x: 5 }}
+      whileHover={{ scale: 1.05, x: -5 }}
       whileTap={{ scale: 0.95 }}
       onClick={onClick}
-      className={`mt-10 px-8 py-4 rounded-full font-bold text-lg shadow-xl inline-flex items-center gap-3 transition-all ${
+      className={`${className} px-8 py-4 rounded-full font-bold text-lg shadow-xl inline-flex items-center gap-3 transition-all ${
         isDark
-          ? "bg-white text-pink-600 hover:shadow-white/20"
-          : "bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:shadow-pink-300/50"
+          ? "bg-white/20 text-white border border-white/50 hover:bg-white/30"
+          : "bg-white text-pink-600 border-2 border-pink-200 hover:bg-pink-50"
       }`}
     >
-      {text}
-      <ChevronRight size={22} className="relative top-[1px]" />
+      <ChevronRight size={22} className="relative top-[1px] rotate-180" />
+      Kembali
     </motion.button>
   );
 }
