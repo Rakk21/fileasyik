@@ -68,6 +68,7 @@ export default function Home() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [typewriterText, setTypewriterText] = useState("");
   const [hasOpenedStory, setHasOpenedStory] = useState(false);
+  const [isLetterOpened, setIsLetterOpened] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   
   const fullText = "AAku mau cerita sedikit...\nTentang kamu, tentang kita, dan alasan kenapa aku bersyukur punya kamu.";
@@ -344,42 +345,361 @@ export default function Home() {
         )}
 
         {/* CHAPTER 6 : THE LETTER */}
-        {chapter === 6 && (
-          <motion.section
-            key="chapter-6"
-            variants={pageVariant} initial="initial" animate="animate" exit="exit"
-            className="min-h-screen flex flex-col items-center justify-center py-20 px-6 bg-[url('https://www.transparenttextures.com/patterns/notebook.png')] bg-pink-50/40 relative"
+       {/* CHAPTER 6 : THE LETTER */}
+{chapter === 6 && (
+  <motion.section
+    key="chapter-6"
+    variants={pageVariant}
+    initial="initial"
+    animate="animate"
+    exit="exit"
+    className="min-h-screen flex flex-col items-center justify-center py-20 px-6 bg-gradient-to-br from-pink-50 via-rose-50 to-orange-50 relative overflow-hidden"
+  >
+    {/* Background decoration */}
+    <FloatingHeart
+      className="top-[15%] left-[10%]"
+      size={30}
+      delay={0.3}
+    />
+
+    <FloatingHeart
+      className="bottom-[20%] right-[10%]"
+      size={35}
+      delay={1}
+    />
+
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-pink-300/20 rounded-full blur-[120px]" />
+
+    <div className="relative z-10 w-full max-w-3xl mx-auto text-center">
+
+      {/* TITLE */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <Stars
+          className="mx-auto text-pink-400 mb-6"
+          size={40}
+        />
+
+        <p className="uppercase tracking-[0.5em] text-sm text-pink-400 font-bold">
+          Ada sesuatu buat kamu
+        </p>
+
+        <h2 className="font-serif text-4xl md:text-5xl mt-4 text-gray-800">
+          Sebuah surat kecil...
+        </h2>
+
+        {!isLetterOpened && (
+          <p className="mt-4 text-gray-500 text-lg">
+            Aku tulis ini khusus buat kamu.
+          </p>
+        )}
+      </motion.div>
+
+
+      {/* ============================= */}
+      {/* SURAT TERTUTUP */}
+      {/* ============================= */}
+
+      <AnimatePresence mode="wait">
+
+        {!isLetterOpened ? (
+          <motion.div
+            key="closed-letter"
+            initial={{ opacity: 0, scale: 0.8, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{
+              opacity: 0,
+              scale: 1.1,
+              y: -20,
+              transition: { duration: 0.5 }
+            }}
+            className="mt-14 flex justify-center"
           >
-            <div className="max-w-3xl mx-auto bg-white/95 backdrop-blur-md rounded-[2.5rem] p-12 md:p-20 shadow-2xl shadow-pink-200/50 border-2 border-white w-full">
-              <div className="text-center mb-16">
-                <Stars className="mx-auto text-pink-400 mb-6" size={40} />
-                <p className="uppercase tracking-[0.5em] text-sm text-pink-400 font-bold">Surat kecil buat kamu</p>
-                <div className="w-16 h-1 bg-gradient-to-r from-pink-300 to-rose-300 mx-auto mt-6 rounded-full" />
-              </div>
-              <div className="font-serif text-xl leading-relaxed text-gray-700 space-y-6">
-                <p>Sayang,</p>
-                <p>11 Juni mungkin terlihat seperti tanggal biasa bagi orang lain. Tapi buat aku, hari itu adalah awal dari cerita yang sampai sekarang masih ingin aku jaga.</p>
-                <p>Aku tahu aku belum selalu jadi pasangan yang sempurna. Kita juga pernah melewati masa-masa ketika saling memahami terasa nggak mudah.</p>
-                <p>Tapi dari semua yang sudah kita lewati, ada satu hal yang tetap sama.</p>
-                <div className="py-6 text-center">
-                  <p className="text-3xl text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-500 font-bold italic">Aku sayang kamu.</p>
+
+            <motion.button
+              onClick={() => setIsLetterOpened(true)}
+              whileHover={{
+                scale: 1.05,
+                y: -8,
+              }}
+              whileTap={{
+                scale: 0.97,
+              }}
+              className="relative group cursor-pointer"
+            >
+
+              {/* Shadow */}
+              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-64 h-10 bg-pink-300/30 blur-2xl rounded-full" />
+
+              {/* Envelope */}
+              <div className="relative w-[320px] h-[220px] md:w-[420px] md:h-[280px]">
+
+                {/* Body */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#fffdf9] to-[#f8e8df] rounded-xl shadow-2xl border border-white overflow-hidden">
+
+                  {/* Envelope bottom folds */}
+                  <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-[#f3ddd3] [clip-path:polygon(0_100%,100%_100%,0_0)]" />
+
+                  <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-[#eed6cb] [clip-path:polygon(100%_100%,0_100%,100%_0)]" />
+
                 </div>
-                <p>Kamu memang cantik, tapi itu bukan satu-satunya alasan aku memilih kamu. Aku suka caramu menjadi dirimu sendiri, dan aku suka semua momen sederhana yang kita punya.</p>
-                <p>Mungkin karena kita LDR, setiap kali bisa bertemu rasanya jadi jauh lebih berarti.</p>
-                <p>Aku nggak tahu nanti perjalanan kita akan seperti apa. Tapi kalau boleh memilih, aku ingin terus menjalaninya bareng kamu.</p>
-                <p>Aku ingin nanti kita bukan cuma punya cerita tentang awal pertemuan, tapi juga cerita tentang bagaimana kita tetap bertahan setelah melewati banyak hal.</p>
-                <p className="pt-6">Terima kasih karena sudah hadir dan tetap menjadi bagian dari hidup aku.</p>
-                <p className="text-2xl text-pink-500 font-bold flex items-center gap-2">
-                  Aku sayang kamu. <Heart className="text-red-500 animate-pulse" fill="currentColor" size={24} />
-                </p>
+
+
+                {/* Envelope flap */}
+                <motion.div
+                  className="absolute top-0 left-0 w-full h-[55%] origin-top z-20"
+                  style={{
+                    clipPath: "polygon(0 0, 100% 0, 50% 100%)",
+                  }}
+                >
+                  <div className="w-full h-full bg-gradient-to-br from-[#f9e9df] to-[#efd2c6] border-t border-white/70" />
+                </motion.div>
+
+
+                {/* Heart seal */}
+                <motion.div
+                  animate={{
+                    y: [0, -4, 0],
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="absolute left-1/2 top-[48%] -translate-x-1/2 -translate-y-1/2 z-30"
+                >
+                  <div className="w-16 h-16 rounded-full bg-white shadow-xl flex items-center justify-center border-4 border-pink-100">
+                    <Heart
+                      className="text-pink-500"
+                      fill="currentColor"
+                      size={30}
+                    />
+                  </div>
+                </motion.div>
+
+
+                {/* Tulisan */}
+                <div className="absolute inset-0 flex items-end justify-center pb-8 z-10 pointer-events-none">
+                  <p className="font-serif text-xl text-pink-500 italic">
+                    Untuk kamu, sayang.
+                  </p>
+                </div>
+
               </div>
-              <div className="mt-16 text-center">
-                <NextButton text="Satu hal terakhir" onClick={nextChapter} onBack={previousChapter} />
+
+              {/* Hint */}
+              <motion.p
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                }}
+                className="mt-10 text-pink-500 font-medium"
+              >
+                Klik suratnya untuk membuka ❤️
+              </motion.p>
+
+            </motion.button>
+
+          </motion.div>
+        ) : (
+
+          /* ============================= */
+          /* ISI SURAT */
+          /* ============================= */
+
+          <motion.div
+            key="opened-letter"
+            initial={{
+              opacity: 0,
+              y: 50,
+              scale: 0.9,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+            }}
+            transition={{
+              duration: 0.8,
+              type: "spring",
+              bounce: 0.25,
+            }}
+            className="mt-12"
+          >
+
+            {/* Paper */}
+            <div className="relative bg-[#fffdf8] rounded-[2rem] p-8 md:p-14 shadow-2xl border border-white text-left">
+
+              {/* Paper decoration */}
+              <div className="absolute top-6 right-6 opacity-20">
+                <Heart
+                  className="text-pink-400"
+                  fill="currentColor"
+                  size={45}
+                />
               </div>
+
+              <div className="absolute top-6 left-6 opacity-20">
+                <Sparkles
+                  className="text-pink-400"
+                  size={35}
+                />
+              </div>
+
+
+              {/* Letter */}
+              <div className="font-serif text-lg md:text-xl leading-relaxed text-gray-700 space-y-6">
+
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  Sayang,
+                </motion.p>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35 }}
+                >
+                  11 Juni mungkin terlihat seperti tanggal biasa bagi orang lain.
+                  Tapi buat aku, hari itu adalah awal dari cerita yang sampai
+                  sekarang masih ingin aku jaga.
+                </motion.p>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  Aku tahu aku belum selalu jadi pasangan yang sempurna.
+                  Kita juga pernah melewati masa-masa ketika saling memahami
+                  terasa nggak mudah.
+                </motion.p>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.65 }}
+                >
+                  Tapi dari semua yang sudah kita lewati, ada satu hal yang
+                  tetap sama.
+                </motion.p>
+
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    delay: 0.85,
+                    type: "spring",
+                  }}
+                  className="py-6 text-center"
+                >
+                  <p className="text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-500 font-bold italic">
+                    Aku sayang kamu.
+                  </p>
+                </motion.div>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1 }}
+                >
+                  Kamu memang cantik, tapi itu bukan satu-satunya alasan aku
+                  memilih kamu. Aku suka caramu menjadi dirimu sendiri, dan aku
+                  suka semua momen sederhana yang kita punya.
+                </motion.p>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.15 }}
+                >
+                  Mungkin karena kita LDR, setiap kali bisa bertemu rasanya
+                  jadi jauh lebih berarti.
+                </motion.p>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.3 }}
+                >
+                  Aku nggak tahu nanti perjalanan kita akan seperti apa.
+                  Tapi kalau boleh memilih, aku ingin terus menjalaninya
+                  bareng kamu.
+                </motion.p>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.45 }}
+                >
+                  Aku ingin nanti kita bukan cuma punya cerita tentang awal
+                  pertemuan, tapi juga cerita tentang bagaimana kita tetap
+                  bertahan setelah melewati banyak hal.
+                </motion.p>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.6 }}
+                  className="pt-4"
+                >
+                  Terima kasih karena sudah hadir dan tetap menjadi bagian
+                  dari hidup aku.
+                </motion.p>
+
+                <motion.p
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    delay: 1.8,
+                    type: "spring",
+                  }}
+                  className="pt-4 text-2xl text-pink-500 font-bold flex items-center gap-2"
+                >
+                  Aku sayang kamu.
+                  <Heart
+                    className="text-red-500 animate-pulse"
+                    fill="currentColor"
+                    size={24}
+                  />
+                </motion.p>
+
+              </div>
+
+
+              {/* Button */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 2.2 }}
+                className="mt-14 text-center"
+              >
+                <NextButton
+                  text="Satu hal terakhir"
+                  onClick={nextChapter}
+                  onBack={previousChapter}
+                />
+              </motion.div>
+
             </div>
-          </motion.section>
+
+          </motion.div>
+
         )}
 
+      </AnimatePresence>
+
+    </div>
+  </motion.section>
+)}
         {/* CHAPTER 7 : THE QUESTION */}
         {chapter === 7 && (
           <motion.section
