@@ -23,7 +23,7 @@ const memories = [
   },
   {
     title: "Tentang jarak",
-    text: "Kita memang nggak selalu bisa berada di tempat yang sama. Tapi sejauh apa pun jaraknya, kamu tetap terasa dekat di hati aku.",
+    text: "Kita memang nggak selalu bisa berada di tempat yang sama. Tapi sejauh apa pun jaraknya, kamu tetap terasa dekat di hatiku.",
     icon: "🌙",
   },
   {
