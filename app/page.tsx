@@ -72,7 +72,7 @@ export default function Home() {
   const [isLetterOpened, setIsLetterOpened] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   
-  const fullText = "Akku mau cerita sedikit...\nTentang kamu, tentang kita, dan alasan kenapa aku bersyukur punya kamu.";
+  const fullText = "Aaku mau cerita sedikit...\nTentang kamu, tentang kita, dan alasan kenapa aku bersyukur punya kamu.";
 
   // Efek Typewriter di Chapter 0
   useEffect(() => {
