@@ -332,7 +332,7 @@ export default function Home() {
                         </div>
                       </div>
                       <div className="absolute bottom-3 left-0 right-0 text-center">
-                        <p className="font-serif text-sm text-gray-500 italic">Kenangan #{index + 1}</p>
+                        <p className="font-serif text-sm text-gray-500 italic"></p>
                       </div>
                       <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-20 h-6 bg-pink-100/80 rotate-[-2deg] shadow-sm" />
                     </motion.button>
@@ -443,7 +443,7 @@ export default function Home() {
                       <div className="font-serif text-lg md:text-xl leading-relaxed text-gray-700 space-y-6">
                         <LetterParagraph delay={0.2}>Sayang,</LetterParagraph>
                         <LetterParagraph delay={0.35}>11 Juni mungkin terlihat seperti tanggal biasa bagi orang lain. Tapi buat aku, hari itu adalah awal dari cerita yang sampai sekarang masih ingin aku jaga.</LetterParagraph>
-                        <LetterParagraph delay={0.5}>Aku tahu aku belum selalu jadi pasangan yang sempurna. Kita juga pernah melewati masa-masa ketika saling memahami terasa nggak mudah.</LetterParagraph>
+                        <LetterParagraph delay={0.5}>Aku tahu aku belum selalu jadi pasangan yang sempurna. Kita juga pernah melewati masa-masa ketika saling memahami terasa nggak mudah. </LetterParagraph>
                         <LetterParagraph delay={0.65}>Tapi dari semua yang sudah kita lewati, ada satu hal yang tetap sama.</LetterParagraph>
                         <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.85, type: "spring" }} className="py-6 text-center">
                           <p className="text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-500 font-bold italic">Aku sayang kamu.</p>
