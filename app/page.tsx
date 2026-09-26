@@ -364,7 +364,7 @@ export default function Home() {
                 <p>Tapi dari situ aku belajar, hubungan kita nggak harus selalu sempurna. Yang penting, kita masih mau saling memilih dan memperbaiki semuanya.</p>
               </div>
               <div className="mt-14 mb-16 inline-block px-10 py-5 bg-gradient-to-r from-pink-50 to-rose-50 rounded-2xl border border-pink-100">
-                <p className="font-serif text-3xl text-pink-600 italic font-medium">Yang penting, kita tetap memilih satu sama lain.</p>
+                <p className="font-serif text-3xl text-pink-600 italic font-medium">Apapun yang terjadi, kita lewatin bareng bareng.</p>
               </div>
               <NextButton onClick={nextChapter} onBack={previousChapter} />
             </div>
@@ -448,7 +448,7 @@ export default function Home() {
                         <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.85, type: "spring" }} className="py-6 text-center">
                           <p className="text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-500 font-bold italic">Aku sayang kamu.</p>
                         </motion.div>
-                        <LetterParagraph delay={1}>Kamu memang cantik, tapi itu bukan satu-satunya alasan aku memilih kamu. Aku suka caramu menjadi dirimu sendiri, dan aku suka semua momen sederhana yang kita punya.</LetterParagraph>
+                        <LetterParagraph delay={1}>Kamu cantik, tapi itu bukan satu-satunya alasan aku memilih kamu. Aku suka caramu menjadi dirimu sendiri, dan aku suka semua momen sederhana yang kita punya.</LetterParagraph>
                         <LetterParagraph delay={1.15}>Mungkin karena kita LDR, setiap kali bisa bertemu rasanya jadi jauh lebih berarti.</LetterParagraph>
                         <LetterParagraph delay={1.3}>Aku nggak tahu nanti perjalanan kita akan seperti apa. Tapi kalau boleh memilih, aku ingin terus menjalaninya bareng kamu.</LetterParagraph>
                         <LetterParagraph delay={1.45}>Aku ingin nanti kita bukan cuma punya cerita tentang awal pertemuan, tapi juga cerita tentang bagaimana kita tetap bertahan setelah melewati banyak hal.</LetterParagraph>
@@ -578,7 +578,7 @@ export default function Home() {
               </button>
 
               <div className="text-center mt-5">
-                <p className="text-white font-serif text-2xl italic">Kenangan #{selectedPhoto + 1}</p>
+                <p className="text-white font-serif text-2xl italic">{selectedPhoto + 1}</p>
                 <p className="text-white/60 text-sm mt-2">{selectedPhoto + 1} / {photos.length} · Klik di luar foto untuk menutup</p>
               </div>
             </motion.div>
