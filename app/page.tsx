@@ -72,7 +72,7 @@ export default function Home() {
   const [isLetterOpened, setIsLetterOpened] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   
-  const fullText = "Aku mau cerita sedikit...\nTentang kamu, tentang kita, dan alasan kenapa aku bersyukur punya kamu.";
+  const fullText = "Akku mau cerita sedikit...\nTentang kamu, tentang kita, dan alasan kenapa aku bersyukur punya kamu.";
 
   // Efek Typewriter di Chapter 0
   useEffect(() => {
@@ -175,7 +175,7 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              <p className="text-xs md:text-sm tracking-[0.5em] uppercase text-pink-400 font-bold mb-6">Buat kamu</p>
+              <p className="text-xs md:text-sm tracking-[0.5em] uppercase text-pink-400 font-bold mb-6">Ada sesuatu</p>
               <h1 className="text-5xl md:text-7xl font-serif text-gray-800 tracking-tight">
                 Untuk kamu, <span className="block text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-400 italic mt-2 py-2 font-bold">sayang.</span>
               </h1>
