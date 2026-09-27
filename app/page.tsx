@@ -23,7 +23,7 @@ const memories = [
   },
   {
     title: "Tentang jarak",
-    text: "Kita memang nggak selalu bisa berada di tempat yang sama. Tapi sejauh apa pun jaraknya, kamu tetap terasa dekat di hatiku.",
+    text: "Kita memang nggak selalu bisa berada di tempat yang sama. Tapi sejauh apa pun jaraknya, kamu tetap terasa dekat di hati aku.",
     icon: "🌙",
   },
   {
@@ -33,7 +33,7 @@ const memories = [
   },
   {
     title: "Hal-hal kecil",
-    text: "Aku ingat banyak hal tentang kita, termasuk hal-hal kecil yang bikin kita senang.",
+    text: "Aku ingat banyak hal tentang kita, termasuk hal-hal kecil yang mungkin sudah kamu lupakan.",
     icon: "✨",
   },
 ];
@@ -70,9 +70,10 @@ export default function Home() {
   const [hasOpenedStory, setHasOpenedStory] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
   const [isLetterOpened, setIsLetterOpened] = useState(false);
+  const [showFinalMessage, setShowFinalMessage] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   
-  const fullText = "Aaku mau cerita sedikit...\nTentang kamu, tentang kita, dan alasan kenapa aku bersyukur punya kamu.";
+  const fullText = "Aku mau cerita sedikit...\nTentang kamu, tentang kita, dan alasan kenapa aku bersyukur punya kamu.";
 
   // Efek Typewriter di Chapter 0
   useEffect(() => {
@@ -175,7 +176,7 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              <p className="text-xs md:text-sm tracking-[0.5em] uppercase text-pink-400 font-bold mb-6">Ada sesuatu</p>
+              <p className="text-xs md:text-sm tracking-[0.5em] uppercase text-pink-400 font-bold mb-6">Buat kamu</p>
               <h1 className="text-5xl md:text-7xl font-serif text-gray-800 tracking-tight">
                 Untuk kamu, <span className="block text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-400 italic mt-2 py-2 font-bold">sayang.</span>
               </h1>
@@ -332,7 +333,7 @@ export default function Home() {
                         </div>
                       </div>
                       <div className="absolute bottom-3 left-0 right-0 text-center">
-                        <p className="font-serif text-sm text-gray-500 italic"></p>
+                        <p className="font-serif text-sm text-gray-500 italic">Kenangan #{index + 1}</p>
                       </div>
                       <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-20 h-6 bg-pink-100/80 rotate-[-2deg] shadow-sm" />
                     </motion.button>
@@ -364,7 +365,7 @@ export default function Home() {
                 <p>Tapi dari situ aku belajar, hubungan kita nggak harus selalu sempurna. Yang penting, kita masih mau saling memilih dan memperbaiki semuanya.</p>
               </div>
               <div className="mt-14 mb-16 inline-block px-10 py-5 bg-gradient-to-r from-pink-50 to-rose-50 rounded-2xl border border-pink-100">
-                <p className="font-serif text-3xl text-pink-600 italic font-medium">Apapun yang terjadi, kita lewatin bareng bareng.</p>
+                <p className="font-serif text-3xl text-pink-600 italic font-medium">Yang penting, kita tetap memilih satu sama lain.</p>
               </div>
               <NextButton onClick={nextChapter} onBack={previousChapter} />
             </div>
@@ -443,12 +444,12 @@ export default function Home() {
                       <div className="font-serif text-lg md:text-xl leading-relaxed text-gray-700 space-y-6">
                         <LetterParagraph delay={0.2}>Sayang,</LetterParagraph>
                         <LetterParagraph delay={0.35}>11 Juni mungkin terlihat seperti tanggal biasa bagi orang lain. Tapi buat aku, hari itu adalah awal dari cerita yang sampai sekarang masih ingin aku jaga.</LetterParagraph>
-                        <LetterParagraph delay={0.5}>Aku tahu aku belum selalu jadi pasangan yang sempurna. Kita juga pernah melewati masa-masa ketika saling memahami terasa nggak mudah. </LetterParagraph>
+                        <LetterParagraph delay={0.5}>Aku tahu aku belum selalu jadi pasangan yang sempurna. Kita juga pernah melewati masa-masa ketika saling memahami terasa nggak mudah.</LetterParagraph>
                         <LetterParagraph delay={0.65}>Tapi dari semua yang sudah kita lewati, ada satu hal yang tetap sama.</LetterParagraph>
                         <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.85, type: "spring" }} className="py-6 text-center">
                           <p className="text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-500 font-bold italic">Aku sayang kamu.</p>
                         </motion.div>
-                        <LetterParagraph delay={1}>Kamu cantik, tapi itu bukan satu-satunya alasan aku memilih kamu. Aku suka caramu menjadi dirimu sendiri, dan aku suka semua momen sederhana yang kita punya.</LetterParagraph>
+                        <LetterParagraph delay={1}>Kamu memang cantik, tapi itu bukan satu-satunya alasan aku memilih kamu. Aku suka caramu menjadi dirimu sendiri, dan aku suka semua momen sederhana yang kita punya.</LetterParagraph>
                         <LetterParagraph delay={1.15}>Mungkin karena kita LDR, setiap kali bisa bertemu rasanya jadi jauh lebih berarti.</LetterParagraph>
                         <LetterParagraph delay={1.3}>Aku nggak tahu nanti perjalanan kita akan seperti apa. Tapi kalau boleh memilih, aku ingin terus menjalaninya bareng kamu.</LetterParagraph>
                         <LetterParagraph delay={1.45}>Aku ingin nanti kita bukan cuma punya cerita tentang awal pertemuan, tapi juga cerita tentang bagaimana kita tetap bertahan setelah melewati banyak hal.</LetterParagraph>
@@ -503,41 +504,78 @@ export default function Home() {
           </motion.section>
         )}
 
-        {/* CHAPTER 8 : THE OUTRO (ANSWERED) */}
+        {/* CHAPTER 8 : THE OUTRO / FINAL SCENE */}
         {chapter === 8 && (
-          <motion.section
-            key="chapter-8"
-            initial={{ opacity: 0, scale: 0.8, rotate: -5 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ duration: 0.8, type: "spring" }}
-            className="min-h-screen flex items-center justify-center px-6 bg-[#fffafc]"
-          >
-            <div className="text-center bg-white/60 p-20 rounded-[4rem] backdrop-blur-md shadow-2xl shadow-pink-200/50">
-              <motion.div animate={{ scale: [1, 1.2, 1], rotate: [0, 5, -5, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} className="inline-block">
-                <Heart className="text-red-500 drop-shadow-2xl" fill="currentColor" size={120} />
+          <motion.section key="chapter-8" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.2 }} className="relative min-h-screen overflow-hidden bg-[#120b10] text-white">
+            <motion.div initial={{ opacity: 0, scale: 0.7 }} animate={{ opacity: 0.45, scale: 1 }} transition={{ duration: 2 }} className="absolute top-[-180px] left-1/2 -translate-x-1/2 w-[650px] h-[650px] rounded-full bg-pink-500/20 blur-[130px]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(244,114,182,0.08),transparent_55%)]" />
+
+            <FloatingHeart className="top-[15%] left-[8%] text-pink-300/30" size={24} delay={0} />
+            <FloatingHeart className="top-[28%] right-[10%] text-rose-300/30" size={28} delay={1.2} />
+            <FloatingHeart className="bottom-[18%] left-[15%] text-pink-300/20" size={20} delay={2} />
+
+            <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 py-20">
+              <motion.div initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.3 }} className="text-center">
+                <p className="uppercase tracking-[0.45em] text-[10px] md:text-xs text-pink-300 font-semibold">End credits</p>
+                <h2 className="font-serif text-4xl md:text-6xl mt-5 leading-tight">Cerita ini belum selesai.</h2>
+                <p className="mt-5 text-white/55 text-base md:text-lg max-w-xl mx-auto leading-relaxed">Ini cuma satu halaman kecil dari banyak hal yang masih ingin aku jalani dan aku ingat bareng kamu.</p>
               </motion.div>
-              <h2 className="font-serif text-5xl md:text-7xl mt-12 text-gray-900 leading-tight font-bold">
-                Kalau begitu, mari kita buat <span className="block text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-500 italic mt-3">lebih banyak kenangan.</span>
-              </h2>
-              <div className="mt-12 inline-block px-10 py-4 bg-white rounded-full border-2 border-pink-100 shadow-md text-pink-500 font-bold tracking-widest text-xl">
-                11 June → ∞
-              </div>
-              <p className="mt-10 text-gray-500 font-medium text-lg">Cerita kita belum selesai.</p>
+
+              <motion.div initial={{ opacity: 0, scale: 0.82, y: 45 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 1, delay: 0.8, type: "spring", bounce: 0.2 }} className="relative mt-12 w-full max-w-xl">
+                <div className="absolute -inset-5 rounded-[2.5rem] bg-pink-500/10 blur-2xl" />
+                <div className="relative bg-white p-3 md:p-4 rounded-[1.5rem] shadow-2xl shadow-black/40 rotate-[-1deg]">
+                  <button type="button" onClick={() => setSelectedPhoto(0)} className="relative block w-full aspect-[4/3] overflow-hidden rounded-xl cursor-pointer group">
+                    <Image src={`/photos/${photos[0]}`} alt="Kenangan kita" fill sizes="(max-width: 768px) 90vw, 600px" className="object-cover transition-transform duration-1000 group-hover:scale-105" priority />
+                  </button>
+                  <div className="py-4 text-center"><p className="font-serif text-gray-700 text-lg italic">salah satu dari sekian banyak momen yang ingin aku simpan.</p></div>
+                </div>
+              </motion.div>
+
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1.4 }} className="mt-10 flex items-center gap-4 text-xs md:text-sm text-white/50">
+                <span>11 June</span><div className="w-20 md:w-32 h-px bg-gradient-to-r from-pink-400/20 via-pink-300/70 to-pink-400/20" /><span>∞</span>
+              </motion.div>
+
+              <AnimatePresence mode="wait">
+                {!showFinalMessage ? (
+                  <motion.div key="final-button" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.8, duration: 0.7 }} className="mt-10 text-center">
+                    <p className="text-white/40 text-sm mb-4">Tapi sebelum benar-benar selesai...</p>
+                    <motion.button type="button" whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} onClick={() => setShowFinalMessage(true)} className="px-8 py-4 rounded-full bg-white text-pink-600 font-bold shadow-2xl shadow-pink-900/30 inline-flex items-center gap-3">
+                      <Heart fill="currentColor" size={19} />Buka pesan terakhir
+                    </motion.button>
+                  </motion.div>
+                ) : (
+                  <motion.div key="final-message" initial={{ opacity: 0, y: 25, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.8, type: "spring", bounce: 0.2 }} className="mt-10 max-w-2xl text-center">
+                    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.15, type: "spring", bounce: 0.5 }} className="mx-auto w-14 h-14 rounded-full bg-pink-500/15 border border-pink-300/20 flex items-center justify-center">
+                      <Heart className="text-pink-300" fill="currentColor" size={25} />
+                    </motion.div>
+                    <p className="mt-7 font-serif text-2xl md:text-4xl text-white leading-relaxed italic">“Kalau nanti kita membuka halaman ini lagi, semoga kita masih bisa tersenyum karena ternyata kita berhasil melewati semuanya.”</p>
+                    <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }} className="mt-7 text-pink-300 font-medium tracking-wide">Aku sayang kamu. ❤️</motion.p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.2, duration: 0.8 }} className="mt-14 flex justify-center gap-3">
+                {photos.slice(0, 5).map((photo, index) => (
+                  <motion.button key={photo} type="button" whileHover={{ y: -6, scale: 1.08 }} whileTap={{ scale: 0.95 }} onClick={() => setSelectedPhoto(index)} className="relative w-12 h-12 md:w-16 md:h-16 rounded-xl overflow-hidden border border-white/20 shadow-lg opacity-70 hover:opacity-100 transition-opacity">
+                    <Image src={`/photos/${photo}`} alt={`Kenangan kecil ${index + 1}`} fill sizes="64px" className="object-cover" />
+                  </motion.button>
+                ))}
+              </motion.div>
+
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.8, duration: 1 }} className="mt-14 text-center">
+                <p className="text-[10px] uppercase tracking-[0.4em] text-white/25">Written with love</p>
+                <p className="mt-2 font-serif text-white/45 italic">untuk kamu, sayang.</p>
+              </motion.div>
+
               <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
-                <PreviousButton onClick={previousChapter} className="mt-0" />
-                <motion.button
-                  whileHover={{ scale: 1.05, y: -3 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setChapter(0)}
-                  className="inline-flex items-center gap-3 rounded-full border-2 border-pink-200 bg-white px-8 py-4 text-lg font-bold text-pink-600 shadow-xl transition-all hover:bg-pink-50"
-                >
-                  <RotateCcw size={20} />
-                  Baca ulang cerita
+                <PreviousButton onClick={previousChapter} className="mt-0" theme="dark" />
+                <motion.button whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }} onClick={() => { setShowFinalMessage(false); setIsLetterOpened(false); setSelectedPhoto(null); setChapter(0); }} className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-7 py-4 text-sm md:text-base font-bold text-white/80 shadow-xl backdrop-blur-sm hover:bg-white/10 transition-all">
+                  <RotateCcw size={18} />Baca ulang
                 </motion.button>
               </div>
             </div>
           </motion.section>
         )}
-
-      </AnimatePresence>
 
       {/* PHOTO LIGHTBOX */}
       <AnimatePresence>
@@ -578,7 +616,7 @@ export default function Home() {
               </button>
 
               <div className="text-center mt-5">
-                <p className="text-white font-serif text-2xl italic">{selectedPhoto + 1}</p>
+                <p className="text-white font-serif text-2xl italic">Kenangan #{selectedPhoto + 1}</p>
                 <p className="text-white/60 text-sm mt-2">{selectedPhoto + 1} / {photos.length} · Klik di luar foto untuk menutup</p>
               </div>
             </motion.div>
